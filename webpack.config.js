@@ -1,3 +1,5 @@
+var HtmlwebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   entry: './src/app.js',
   output: {
@@ -6,11 +8,24 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.(js|jsx)$/,
-        use: {
-          loader: 'babel-loader'
+        test: /\.js[x]?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react']
         }
+      }, 
+      { 
+        test: /\.css$/, 
+        loader: 'style-loader!css-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlwebpackPlugin({
+      title: 'webpack-demo',
+      filename: 'index.html',
+      template: './src/index.html'
+    })
+  ]
 }
