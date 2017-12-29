@@ -1,8 +1,8 @@
-import { React } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react';
 
 @observer
-class TimerView extends React.Component {
+export default class TimerView extends React.Component {
   render() {
     return (
       <button onClick={this.onReset.bind(this)}>

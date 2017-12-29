@@ -12,7 +12,12 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015', 'react']
+          cacheDirectory: true,
+          plugins: [
+            'transform-runtime',
+            'transform-decorators-legacy',
+          ],
+          presets: ['es2015', 'react', 'stage-1'],
         }
       }, 
       { 

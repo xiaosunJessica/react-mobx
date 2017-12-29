@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TimerView from './view';
 
-class Hello extends React.Component {
-  render() {
-    return (<h1>hello, world</h1>)
-  }
-}
+import * as stateObj from './state'
 
 ReactDOM.render(
-  <Hello/>,
+  <TimerView appState={stateObj.appState}/>,
   document.getElementById('root')
 )
