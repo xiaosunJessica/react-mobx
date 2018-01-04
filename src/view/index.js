@@ -1,18 +1,44 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { action, observable } from 'mobx';
+
+import Todo from './todo';
 
 @observer
-export default class TimerView extends React.Component {
+export default class TodoList extends React.Component {
+  @observable newTodoTitle = ''
+
   render() {
-    console.info(this.props.rootStore, 'root-sotre=======', this.props.rootStore.todoStore.isLoading)
     return (
-      <button onClick={this.onReset.bind(this)}>
-        Seconds passed: {this.props.rootStore.todoStore.isLoading ? 'true' : 'false'}
-      </button>
+      <div>
+        <form onSubmit={this.handleFormSubmit}>
+          New Todo:
+          <input
+            type="text"
+            value={this.newTodoTitle}
+            onChange={this.handleInputChange} />
+          <button type="submit">Add</button>
+        </form>
+
+        <ul>
+          {this.props.rootStore.todoStore.todos.map(todo => {
+            return <Todo todo={todo} key={todo.id} />
+          })}
+        </ul>
+        Tasks left: {this.props.rootStore.todoStore.unfinishedTodoCount}
+      </div>
     )
   }
 
-  onReset() {
-    this.props.appState.resetTimer();
-  }
+ @action 
+ handleFormSubmit = e => {
+   this.props.rootStore.todoStore.addTodo(this.newTodoTitle);
+   this.newTodoTitle = '';
+   e.preventDefault();
+ }
+
+ @action
+ handleInputChange = e => {
+   this.newTodoTitle = e.target.value;
+ }
 }
