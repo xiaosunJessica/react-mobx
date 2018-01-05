@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TodoList from './view';
+import { Provider } from 'mobx-react';
 import DevTools from 'mobx-react-devtools'
 
 import {RootStore} from './store';
@@ -8,10 +9,11 @@ import {RootStore} from './store';
 const store = new RootStore();
 
 ReactDOM.render(
-  <div>
-    <TodoList rootStore={store}/>
-    <DevTools />
-  </div>,
+  <Provider rootStore={store}>
+    <TodoList>
+      <DevTools />
+    </TodoList>
+  </Provider>,
   document.getElementById('root')
 )
 

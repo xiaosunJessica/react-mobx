@@ -17,4 +17,13 @@ export class TodoStore {
   addTodo (title) {
     this.todos.push(new todoModel(title))
   }
+
+  @action
+  deleteTodo (id) {
+    this.todos.map(todo => {
+      if (todo.id === id) {
+        this.todos.remove(todo)
+      }
+    })
+  }
 }

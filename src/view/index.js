@@ -1,10 +1,10 @@
 import React from 'react';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import { action, observable } from 'mobx';
 
 import Todo from './todo';
 
-@observer
+@inject('rootStore')@observer
 export default class TodoList extends React.Component {
   @observable newTodoTitle = ''
 
