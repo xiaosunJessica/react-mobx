@@ -13,7 +13,7 @@ import { action } from 'mobx';
 //   </li>
 // ))
 
-@inject('rootStore')@observer
+@inject('todoStore')@observer
 class Todo extends React.Component {
   render() {
     const { todo } = this.props

@@ -4,12 +4,14 @@ import TodoList from './view';
 import { Provider } from 'mobx-react';
 import DevTools from 'mobx-react-devtools'
 
-import {RootStore} from './store';
+import { TodoStore } from './store/todo';
+import { OtherStore } from './store/other-store';
 
-const store = new RootStore();
+const todoStore = new TodoStore();
+const otherStore = new OtherStore();
 
 ReactDOM.render(
-  <Provider rootStore={store}>
+  <Provider todoStore={todoStore} otherStore={otherStore}>
     <TodoList>
       <DevTools />
     </TodoList>
@@ -17,12 +19,12 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-store.todoStore.addTodo('Get Coffee')
-store.todoStore.addTodo('Write simpler code')
-store.todoStore.todos[0].finished = true
+todoStore.addTodo('Get Coffee')
+todoStore.addTodo('Write simpler code')
+todoStore.todos[0].finished = true
 
 setTimeout(() => {
-  store.todoStore.addTodo("Get a cookie as well");
+  todoStore.addTodo("Get a cookie as well");
 }, 2000);
 
-window.store = store
+window.todoStore = todoStore

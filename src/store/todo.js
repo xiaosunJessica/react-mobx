@@ -26,4 +26,22 @@ export class TodoStore {
       }
     })
   }
+
+  @action
+  updateTodo (obj) {
+    this.todos.map(todo => {
+      if (todo.id = obj.id) {
+        this.todos.title = obj.title
+      }
+    })
+  }
+
+  @action
+  searchTodo (title) {
+    this.todos.map(todo => {
+      if (todo.title.indexOf(title)< 0) {
+        this.todos.remove(todo);
+      }
+    })
+  }
 }

@@ -12,6 +12,7 @@
    __config decorator__
    - .babelrc中plugin相关配置
    - compose multiple stores
+   - Provider组件和inject注入结合使用
 
 ## compared redux and mobx
   1. store

@@ -4,13 +4,23 @@ import { action, observable } from 'mobx';
 
 import Todo from './todo';
 
-@inject('rootStore')@observer
+@inject('todoStore', 'otherStore')@observer
 export default class TodoList extends React.Component {
   @observable newTodoTitle = ''
 
+  componentDidMount() {
+    this.search.addEventListener('keypress', e => {
+      if (e.keyCode === 13 && e.target.tagName === 'INPUT') {
+        this.props.todoStore.searchTodo(e.target.value)
+      }
+    })
+  }
+
   render() {
+    console.info(this.props)
     return (
       <div>
+        <input type="search" ref={(search) => this.search = search} />
         <form onSubmit={this.handleFormSubmit}>
           New Todo:
           <input
@@ -21,18 +31,18 @@ export default class TodoList extends React.Component {
         </form>
 
         <ul>
-          {this.props.rootStore.todoStore.todos.map(todo => {
+          {this.props.todoStore.todos.map(todo => {
             return <Todo todo={todo} key={todo.id} />
           })}
         </ul>
-        Tasks left: {this.props.rootStore.todoStore.unfinishedTodoCount}
+        Tasks left: {this.props.todoStore.unfinishedTodoCount}
       </div>
     )
   }
 
  @action 
  handleFormSubmit = e => {
-   this.props.rootStore.todoStore.addTodo(this.newTodoTitle);
+   this.props.todoStore.addTodo(this.newTodoTitle);
    this.newTodoTitle = '';
    e.preventDefault();
  }
