@@ -1,4 +1,6 @@
-var HtmlwebpackPlugin = require('html-webpack-plugin');
+const HtmlwebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   entry: './src/app.js',
@@ -31,6 +33,13 @@ module.exports = {
       title: 'webpack-demo',
       filename: 'index.html',
       template: './src/index.html'
-    })
-  ]
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  resolve: {
+    alias: {
+      store: path.resolve(__dirname, './src/store'),
+      view: path.resolve(__dirname, './src/view')
+    }
+  }
 }

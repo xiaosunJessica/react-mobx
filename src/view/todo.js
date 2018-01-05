@@ -21,8 +21,8 @@ class Todo extends React.Component {
       <li>
         <input 
           type="checkbox" 
-          checked={todo.finished} 
-          onClick={() => (todo.finished = !todo.finished)} />
+          checked={todo.checked} 
+          onClick={() => (todo.checked = !todo.checked)} />
           {todo.title}
           <button onClick={this.handleDelete}>delete</button>
       </li>
@@ -31,7 +31,7 @@ class Todo extends React.Component {
 
   @action 
   handleDelete = e => {
-    this.props.rootStore.todoStore.deleteTodo(this.props.todo.id)
+    this.props.todoStore.deleteTodo(this.props.todo.id)
   }
 }
 

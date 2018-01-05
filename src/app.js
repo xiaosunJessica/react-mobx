@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TodoList from './view';
 import { Provider } from 'mobx-react';
 import DevTools from 'mobx-react-devtools'
 
-import { TodoStore } from './store/todo';
-import { OtherStore } from './store/other-store';
+import TodoList from 'view';
+import { TodoStore } from 'store/todo';
+import { OtherStore } from 'store/other-store';
 
 const todoStore = new TodoStore();
 const otherStore = new OtherStore();
@@ -19,12 +19,12 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-todoStore.addTodo('Get Coffee')
-todoStore.addTodo('Write simpler code')
-todoStore.todos[0].finished = true
+todoStore.addTodo('add first')
+todoStore.addTodo('add second')
+todoStore.todos[0].checked = true
 
 setTimeout(() => {
-  todoStore.addTodo("Get a cookie as well");
+  todoStore.addTodo("add third");
 }, 2000);
 
 window.todoStore = todoStore

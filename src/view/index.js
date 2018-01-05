@@ -4,7 +4,11 @@ import { action, observable } from 'mobx';
 
 import Todo from './todo';
 
-@inject('todoStore', 'otherStore')@observer
+@inject(allStore => ({
+  todoStore: allStore.todoStore,
+  otherStore: allStore.otherStore
+}))
+@observer
 export default class TodoList extends React.Component {
   @observable newTodoTitle = ''
 
@@ -17,7 +21,6 @@ export default class TodoList extends React.Component {
   }
 
   render() {
-    console.info(this.props)
     return (
       <div>
         <input type="search" ref={(search) => this.search = search} />

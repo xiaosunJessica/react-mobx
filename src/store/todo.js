@@ -10,7 +10,7 @@ export class TodoStore {
 
   @computed
   get unfinishedTodoCount() {
-    return this.todos.filter(todo => !todo.finished).length
+    return this.todos.filter(todo => !todo.checked).length
   }
 
   @action
