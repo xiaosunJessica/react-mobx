@@ -1,6 +1,7 @@
-const HtmlwebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
+const HtmlwebpackPlugin = require('html-webpack-plugin');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
   entry: './src/app.js',
@@ -34,7 +35,8 @@ module.exports = {
       filename: 'index.html',
       template: './src/index.html'
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new OpenBrowserPlugin({ url: 'http://localhost:8080'})
   ],
   resolve: {
     alias: {
