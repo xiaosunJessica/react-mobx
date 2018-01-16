@@ -1,0 +1,4 @@
+src/view/**/*.test.js
+--require babel-polyfill test/setup.js
+--reporter spec
+--require babel-core/register

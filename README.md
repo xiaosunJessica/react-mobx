@@ -20,3 +20,10 @@
      redux是plain javascript, mobx通过使用observable对plain javascript进行包装
   5. 组件
       redux分smart组件和dumb组件，mobx无区分，都是smart组件。
+  
+## FAQ
+  1. test  
+      * The different of the 'shallow' and 'mount'  
+      * shallow render component like (shallow(<Cmpt.wrappedComponent />))  
+      * store inject test component, you should import from YourStore, then new it to inject  
+      * __this test function can not test the 'addEventListener', and I have not resolve ???__
